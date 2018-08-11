@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import {Header, BookCard} from './components'
+import {Header} from './components'
+import {BookContainer} from './containers'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Header/>
-        <BookCard/>
+        <BookContainer/>
       </div>
     );
   }
