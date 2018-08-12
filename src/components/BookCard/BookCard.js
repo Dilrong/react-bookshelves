@@ -7,7 +7,7 @@ const BookCard = ({data}) => (
         <Image src={data.bookCover}/>
         <Card.Content>
             <Card.Header>{data.name}</Card.Header>
-            <Card.Meta>{data.author}</Card.Meta>
+            <Card.Meta>{data.author}<p/> {data.readDate}</Card.Meta>
             <Rating icon='star' defaultRating={data.score} maxRating={5} />
             <Modal trigger={<Button circular icon='search plus' floated='right'/>}>
                 <Modal.Content>
