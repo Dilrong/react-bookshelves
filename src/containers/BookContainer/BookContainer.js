@@ -15,14 +15,14 @@ export default class BookContainer extends Component{
     _getBookdata = async() => {
         const data = await this._callBookAPI()
         this.setState({
-            data: data
+            data: data.rows
         })
         console.log(data)
     }
 
 
     _callBookAPI = async() => {
-        return fetch('http://dilrong.com:3005/books')
+        return fetch('http://dilrong.com:2095/api?id=11rI8SWRtC7Tcevlazc7_dVP4dC2n0GyY7BW7_1NHSiE&&columns=false')
             .then(request => request.json())
             .catch(err => console.log(err))
     }
@@ -33,6 +33,7 @@ export default class BookContainer extends Component{
             <BookCard key={index} data={data}/>
             )
         );
+
         console.log(data)
         return(
             <Container>
