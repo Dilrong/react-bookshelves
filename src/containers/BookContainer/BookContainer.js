@@ -22,7 +22,7 @@ export default class BookContainer extends Component{
 
 
     _callBookAPI = async() => {
-        return fetch('http://dilrong.com:2095/api?id=11rI8SWRtC7Tcevlazc7_dVP4dC2n0GyY7BW7_1NHSiE&&columns=false')
+        return fetch('http://gsx2json.dilrong.com/api?id=11rI8SWRtC7Tcevlazc7_dVP4dC2n0GyY7BW7_1NHSiE&&columns=false')
             .then(request => request.json())
             .catch(err => console.log(err))
     }
