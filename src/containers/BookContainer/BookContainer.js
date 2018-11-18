@@ -1,45 +1,60 @@
 import React, {Component} from 'react'
 import './BookContainer.css'
-import { Container, Card } from 'semantic-ui-react';
-import { BookCard } from '../../components/'
+import { Container, Card, Loader, Dimmer } from 'semantic-ui-react';
+import { BookCard, Navigate } from '../../components/'
 
 export default class BookContainer extends Component{
     state = {
-        data: []
+        data: [],
+        isLoading: true, 
+        sheet: 1
     }
 
     componentDidMount(){
-        this._getBookdata()
+        this._getBookdata(this.state.sheet)
     }
 
-    _getBookdata = async() => {
-        const data = await this._callBookAPI()
+    _getBookdata = async(sheet) => {
+        const data = await this._callBookAPI(sheet)
         this.setState({
-            data: data.rows
+            data: data.rows,
+            isLoading: false
         })
-        console.log(data)
     }
 
-
-    _callBookAPI = async() => {
-        return fetch('http://gsx2json.dilrong.com/api?id=11rI8SWRtC7Tcevlazc7_dVP4dC2n0GyY7BW7_1NHSiE&&columns=false')
+    _callBookAPI = async(sheet) => {
+        return fetch(`http://gsx2json.dilrong.com/api?id=11rI8SWRtC7Tcevlazc7_dVP4dC2n0GyY7BW7_1NHSiE&sheet=${sheet}&columns=false`)
             .then(request => request.json())
             .catch(err => console.log(err))
     }
 
+    handleNavigateClick = (type) => {
+        const sheet = this.state.sheet;
+
+        if(type === 'NEXT') {
+            this._getBookdata(sheet+1);
+        } else {
+            this._getBookdata(sheet-1);
+        }
+    }
+
     render(){
-        const {data} = this.state;
+        const {data, isLoading, sheet} = this.state;
         const booklist = data.map((data, index) => (
             <BookCard key={index} data={data}/>
             )
         );
 
-        console.log(data)
         return(
             <Container>
-                <Card.Group>
-                {booklist}
+                <Card.Group itemsPerRow={5}>
+                {isLoading ? (<Dimmer active inverted><Loader/></Dimmer>) : (booklist.reverse())}
                 </Card.Group>
+                <Navigate
+                    sheet={sheet}
+                    onClick={this.handleNavigateClick}
+                    disabled={isLoading}
+                />
             </Container>
         )
     }
