@@ -23,18 +23,31 @@ export default class BookContainer extends Component{
     }
 
     _callBookAPI = async(sheet) => {
+        this.setState({
+            isLoading: true
+        })
         return fetch(`http://gsx2json.dilrong.com/api?id=11rI8SWRtC7Tcevlazc7_dVP4dC2n0GyY7BW7_1NHSiE&sheet=${sheet}&columns=false`)
             .then(request => request.json())
             .catch(err => console.log(err))
     }
 
     handleNavigateClick = (type) => {
-        const sheet = this.state.sheet;
+        switch(type){
+            case '2019':
+                this._getBookdata(1);
+            break;
 
-        if(type === 'NEXT') {
-            this._getBookdata(sheet+1);
-        } else {
-            this._getBookdata(sheet-1);
+            case '2018':
+                this._getBookdata(2);
+            break;
+
+            case '2017':
+                this._getBookdata(3);
+            break;
+            
+            case '2016':
+                this._getBookdata(4);
+            break;
         }
     }
 
@@ -47,8 +60,8 @@ export default class BookContainer extends Component{
 
         return(
             <Container>
-                <Card.Group itemsPerRow={5}>
-                {isLoading ? (<Dimmer active inverted><Loader/></Dimmer>) : (booklist.reverse())}
+                <Card.Group >
+                {isLoading ? (<Dimmer active inverted><Loader inverted content>Loading</Loader></Dimmer>) : (booklist.reverse())}
                 </Card.Group>
                 <Navigate
                     sheet={sheet}

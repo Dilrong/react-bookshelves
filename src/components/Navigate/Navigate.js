@@ -1,34 +1,42 @@
 import React from 'react';
-import {Button} from 'semantic-ui-react';
+import {Button, Container} from 'semantic-ui-react';
 import './Navigate.css'
 
-const Navigate = ({onClick, sheet, disabled}) => (
-    <div className="Navigate">
+const Navigate = ({onClick, disabled}) => (
+    <Container className="Navigate">
         <Button
-            color="teal"
-            content="지난해"
-            icon="left arrow"
-            labelPosition="left"
+            style={{background: '#EC7969', color: 'white', margin: '5px'}}
+            content="#2019"
             onClick={
-                () => onClick('PREV')
+                () => onClick('2019')
             }
             disabled={disabled}
         />
-        <div className="Navigate-page-num">
-            {sheet}
-        </div>
         <Button
-            color="teal"
-            content="다음해"
-            icon="right arrow"
-            labelPosition="right"
-            className="Navigate-right-button"
+            style={{background: '#554482', color: 'white', margin: '5px'}}
+            content="#2018"
             onClick={
-                () => onClick('NEXT')
+                () => onClick('2018')
             }
             disabled={disabled}
-        /> 
-    </div>
+        />
+        <Button
+            style={{background: '#7DA742', color: 'white', margin: '5px'}}
+            content="#2017"
+            onClick={
+                () => onClick('2017')
+            }
+            disabled={disabled}
+        />
+        <Button
+            style={{background: '#819AC6', color: 'white', margin: '5px'}}
+            content="#2016"
+            onClick={
+                () => onClick('2016')
+            }
+            disabled={disabled}
+        />
+    </Container>
 );
 
 export default Navigate;
