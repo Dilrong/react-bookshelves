@@ -59,8 +59,8 @@ export default class BookContainer extends Component{
         );
 
         return(
-            <Container>
-                <Card.Group >
+            <Container fluid>
+                <Card.Group centered>
                 {isLoading ? (<Dimmer active inverted><Loader inverted content>Loading</Loader></Dimmer>) : (booklist.reverse())}
                 </Card.Group>
                 <Navigate
