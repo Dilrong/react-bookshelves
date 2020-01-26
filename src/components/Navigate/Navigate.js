@@ -5,6 +5,14 @@ import './Navigate.css'
 const Navigate = ({onClick, disabled}) => (
     <Container className="Navigate">
         <Button
+            style={{background: '#0F4C81', color: 'white', margin: '5px'}}
+            content="#2020"
+            onClick={
+                () => onClick('2020')
+            }
+            disabled={disabled}
+        />
+        <Button
             style={{background: '#EC7969', color: 'white', margin: '5px'}}
             content="#2019"
             onClick={
