@@ -6,7 +6,7 @@ const Wrap = styled.div`
   background: #fff;
   border-radius: 2px;
   display: inline-block;
-  height: 470px;
+  height: 460px;
   margin: 1rem;
   position: relative;
   width: 250px;

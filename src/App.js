@@ -4,7 +4,8 @@ import { Main } from './pages/Main/Main'
 
 const GlobalStyle = createGlobalStyle`
   body {
-    margin: 0
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
   }
 `
 
