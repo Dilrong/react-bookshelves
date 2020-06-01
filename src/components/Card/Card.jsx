@@ -32,27 +32,28 @@ const Title = styled.div`
 `
 
 const Author = styled.div`
- font-size: 16px;
+ font-size: 14px;
+ color: gray;
  margin: 5px;
 `
 
-const Publisher = styled.div`
- font-size: 14px;
+const Date = styled.div`
+ font-size: 12px;
  margin: 5px;
  color: gray;
 `
 
 const RatingWrap = styled.div`
- margin: 3px;
+ margin: 2px;
 `
 
-export const Card = ({image, title, author, publisher, rating}) => {
+export const Card = ({image, title, author, publisher, date, rating}) => {
     return (
         <Wrap>
             <Thumbnail src={image} alt="books thumbnail"/>
             <Title>{title}</Title>
-            <Author>{author}</Author>
-            <Publisher>{publisher}</Publisher>
+            <Author>{author} 지음 | {publisher} 출판</Author>
+            <Date>{date}</Date>
             <RatingWrap>
                 <Rating name="read-only" value={rating} readOnly/>
             </RatingWrap>
