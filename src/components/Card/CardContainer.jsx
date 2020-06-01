@@ -1,26 +1,50 @@
 import React, { Component } from 'react'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import styled from 'styled-components'
+import axios from 'axios'
 import { Card } from './Card'
+
+const Wrap = styled.div`
+ display: flex;
+ flex-wrap: wrap;
+`
 
 export default class CardContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: ''
+            data: [],
+            query: '',
+            page: 1,
+            isLoading: false
         }
     }
 
-    componentDidMount() {
-
+    async componentDidMount () {
+        await axios.get(`https://portfilo-278907.du.r.appspot.com/api?id=11rI8SWRtC7Tcevlazc7_dVP4dC2n0GyY7BW7_1NHSiE&columns=false&sheet=${this.state.page}&q=${this.state.query}`)
+            .then((res) => {
+                console.log(res)
+                this.setState({
+                    data: res.data.rows,
+                    isLoading: true
+                })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     render() {
-        return <Card 
-            image="https://res.cloudinary.com/wet932/image/upload/v1589779534/Dilrong%27s%20Book%20Shelves/2020/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%8D%E1%85%A1_%E1%84%87%E1%85%AE%E1%84%8C%E1%85%A1_%E1%84%80%E1%85%A1%E1%84%8D%E1%85%A1_%E1%84%87%E1%85%AE%E1%84%8C%E1%85%A1.jpg"
-            title="진짜 부자 가짜 부자" 
-            author="사경인" 
-            publisher="시크릿하우스"
-            date="2020-05-18"
-            rating="3"
-        />
+        const list = this.state.data.map(data => (
+            <Card 
+            image={data.image}
+            title={data.name}
+            author={data.author}
+            publisher={data.publisher}
+            date={data.time}
+            rating={data.grade}
+            />
+        ));
+        return this.state.isLoading?(<Wrap>{list}</Wrap>) : (<CircularProgress/>)
     }
 }

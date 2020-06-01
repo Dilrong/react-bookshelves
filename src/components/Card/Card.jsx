@@ -29,6 +29,9 @@ const Title = styled.div`
  font-size: 20px;
  margin: 5px;
  font-weight: bold;
+ white-space: nowrap;
+ text-overflow: ellipsis;
+ overflow: hidden;
 `
 
 const Author = styled.div`
