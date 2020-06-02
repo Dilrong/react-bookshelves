@@ -41,7 +41,7 @@ export default class CardContainer extends Component {
     }
 
     async setData(page) {
-        await axios.get(`https://portfilo-278907.du.r.appspot.com/api?id=11rI8SWRtC7Tcevlazc7_dVP4dC2n0GyY7BW7_1NHSiE&columns=false&sheet=${page}&q=${this.state.query}`)
+        await axios.get(`https://gsx2json-dot-portfilo-278907.du.r.appspot.com//api?id=11rI8SWRtC7Tcevlazc7_dVP4dC2n0GyY7BW7_1NHSiE&columns=false&sheet=${page}&q=${this.state.query}`)
         .then((res) => {
             this.setState({
                 data: res.data.rows,
