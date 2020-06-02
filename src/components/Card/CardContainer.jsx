@@ -18,6 +18,12 @@ const LoadingWrap = styled.div`
  justify-content: center;
  justify-items: center;
  `
+const PaginationWrap = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+justify-items: center;
+`
 
 export default class CardContainer extends Component {
     constructor(props) {
@@ -48,13 +54,11 @@ export default class CardContainer extends Component {
     }
 
     render() {
-        const handleChange = (event, value) => {
-          this.setState({
-              page: value
+        const handleChange = async (event, value) => {
+          await this.setState({
+              page: value,
+              isLoading: false
             });
-            this.setState({
-                isLoading: false
-            })
             this.setData(this.state.page)
         };
         const list = this.state.data.map((data, index) => (
@@ -69,9 +73,9 @@ export default class CardContainer extends Component {
             />
         ));
         return this.state.isLoading?(
-        <Wrap>
-            {list.reverse()}
-            <div><Pagination count={5} onChange={handleChange}/></div>
-        </Wrap>) : (<LoadingWrap><CircularProgress/></LoadingWrap>)
+        <>
+            <Wrap>{list.reverse()}</Wrap>
+            <PaginationWrap><Pagination count={5} page={this.state.page} onChange={handleChange}/></PaginationWrap>
+        </>) : (<LoadingWrap><CircularProgress/></LoadingWrap>)
     }
 }
