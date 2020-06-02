@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import Pagination from '@material-ui/lab/Pagination'
 import styled from 'styled-components'
 import axios from 'axios'
 import { Card } from './Card'
@@ -7,7 +8,16 @@ import { Card } from './Card'
 const Wrap = styled.div`
  display: flex;
  flex-wrap: wrap;
+ justify-content: center;
+ justify-items: center;
 `
+const LoadingWrap = styled.div`
+ display: flex;
+ padding-top: 1rem;
+ padding-bottom: 1rem;
+ justify-content: center;
+ justify-items: center;
+ `
 
 export default class CardContainer extends Component {
     constructor(props) {
@@ -21,22 +31,35 @@ export default class CardContainer extends Component {
     }
 
     async componentDidMount () {
-        await axios.get(`https://portfilo-278907.du.r.appspot.com/api?id=11rI8SWRtC7Tcevlazc7_dVP4dC2n0GyY7BW7_1NHSiE&columns=false&sheet=${this.state.page}&q=${this.state.query}`)
-            .then((res) => {
-                console.log(res)
-                this.setState({
-                    data: res.data.rows,
-                    isLoading: true
-                })
+        this.setData(this.state.page)
+    }
+
+    async setData(page) {
+        await axios.get(`https://portfilo-278907.du.r.appspot.com/api?id=11rI8SWRtC7Tcevlazc7_dVP4dC2n0GyY7BW7_1NHSiE&columns=false&sheet=${page}&q=${this.state.query}`)
+        .then((res) => {
+            this.setState({
+                data: res.data.rows,
+                isLoading: true
             })
-            .catch((err) => {
-                console.log(err)
-            })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }
 
     render() {
-        const list = this.state.data.map(data => (
+        const handleChange = (event, value) => {
+          this.setState({
+              page: value
+            });
+            this.setState({
+                isLoading: false
+            })
+            this.setData(this.state.page)
+        };
+        const list = this.state.data.map((data, index) => (
             <Card 
+            key={index}
             image={data.image}
             title={data.name}
             author={data.author}
@@ -45,6 +68,10 @@ export default class CardContainer extends Component {
             rating={data.grade}
             />
         ));
-        return this.state.isLoading?(<Wrap>{list}</Wrap>) : (<CircularProgress/>)
+        return this.state.isLoading?(
+        <Wrap>
+            {list.reverse()}
+            <div><Pagination count={5} onChange={handleChange}/></div>
+        </Wrap>) : (<LoadingWrap><CircularProgress/></LoadingWrap>)
     }
 }
