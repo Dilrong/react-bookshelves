@@ -64,7 +64,7 @@ export default class CardContainer extends Component {
         const list = this.state.data.map((data, index) => (
             <Card 
             key={index}
-            image={data.image}
+            image={data.image ? data.image:"https://res.cloudinary.com/wet932/image/upload/v1546436392/Dilrong%27s%20Book%20Shelves/noImage.png"}
             title={data.name}
             author={data.author}
             publisher={data.publisher}
