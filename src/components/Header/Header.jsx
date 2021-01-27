@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Wrap = styled.div`
-    background-color: #0F4C81;
+    background-color: #F5dF4D;
     color: white;
     font-size: 1.5rem;
     padding: 1rem;
