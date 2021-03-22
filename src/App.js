@@ -1,21 +1,38 @@
-import React from 'react'
-import { createGlobalStyle } from 'styled-components'
-import { Main } from './pages/Main/Main'
+import React from "react";
+import { Helmet } from "react-helmet";
+import { createMuiTheme, CssBaseline } from "@material-ui/core";
+import ThemeProvider from "@material-ui/styles/ThemeProvider";
+import Header from "./components/layout/Header";
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-  }
-`
-
-function App() {
-  return (
-    <div className="App">
-      <GlobalStyle/>
-      <Main/>
-    </div>
+const App = () => {
+  const theme = React.useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          type: "light",
+          primary: {
+            main: "#000000",
+          },
+          background: {
+            default: "#ffffff",
+          },
+        },
+      }),
+    []
   );
-}
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Helmet
+        titleTemplate="%s - Dilrong's Books"
+        defaultTitle="Dilrong's Books"
+      >
+        <meta name="description" content="read the book dilrong" />
+      </Helmet>
+      <Header />
+    </ThemeProvider>
+  );
+};
 
 export default App;
