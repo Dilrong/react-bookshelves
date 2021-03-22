@@ -6,8 +6,10 @@ import {
   Toolbar,
   Typography,
   IconButton,
+  Tooltip,
 } from "@material-ui/core";
 import BubbleChartIcon from "@material-ui/icons/BubbleChart";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 export const useStyles = makeStyles((theme) =>
   createStyles({
@@ -28,14 +30,16 @@ const Header = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="inherit" elevation={0}>
+      <AppBar position="static" elevation={2}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             Dilrong's Book
           </Typography>
-          <IconButton color="inherit" size="small">
-            <BubbleChartIcon />
-          </IconButton>
+          <Tooltip title="Chart">
+            <IconButton color="inherit">
+              <BubbleChartIcon />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
     </div>

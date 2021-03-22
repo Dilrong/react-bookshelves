@@ -1,36 +1,38 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { createMuiTheme, CssBaseline } from "@material-ui/core";
+import { createMuiTheme, CssBaseline, useMediaQuery } from "@material-ui/core";
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
-import Header from "./components/layout/Header";
+import Content from "./components/layout/Content";
 
 const App = () => {
+  const prefersDarkMode = useMediaQuery(`(prefers-color-scheme: "dark")`);
+
   const theme = React.useMemo(
     () =>
       createMuiTheme({
+        typography: {
+          fontFamily: ["Spoqa Han Sans Neo"].join(","),
+        },
         palette: {
-          type: "light",
+          type: prefersDarkMode ? "dark" : "light",
           primary: {
-            main: "#000000",
+            main: "#939597",
           },
           background: {
-            default: "#ffffff",
+            default: prefersDarkMode ? "#303030" : "#ffffff",
           },
         },
       }),
-    []
+    [prefersDarkMode]
   );
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Helmet
-        titleTemplate="%s - Dilrong's Books"
-        defaultTitle="Dilrong's Books"
-      >
+      <Helmet titleTemplate="%s - Dilrong's Book" defaultTitle="Dilrong's Book">
         <meta name="description" content="read the book dilrong" />
       </Helmet>
-      <Header />
+      <Content />
     </ThemeProvider>
   );
 };
