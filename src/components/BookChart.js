@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 import {
   LineChart,
   Line,
@@ -13,6 +13,7 @@ import {
   Treemap,
 } from "recharts";
 import axios from "axios";
+import moment from "moment";
 import Pagination from "@material-ui/lab/Pagination";
 import Progress from "./Progress";
 
@@ -26,6 +27,8 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     justifyItems: "center",
+    marginTop: "2rem",
+    marginBottom: "2rem",
   },
 });
 
@@ -60,6 +63,11 @@ const BookChart = () => {
 
   return (
     <>
+      <Typography className={classes.pagination} variant="h2">
+        {`${moment()
+          .subtract(page - 1, "years")
+          .format("YYYY")} \n Book Chart`}
+      </Typography>
       <div className={classes.root}>
         <LineChart
           width={600}
