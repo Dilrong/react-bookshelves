@@ -37,8 +37,8 @@ const IndividualBook = ({ book }) => {
           <Typography variant="caption" color="textSecondary" component="p">
             {book.time}
           </Typography>
+          <Rating name="read-only" value={book.grade} readOnly />
         </CardContent>
-        <Rating name="read-only" value={book.grade} readOnly />
       </CardActionArea>
     </Card>
   );
