@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { makeStyles, Grid } from "@material-ui/core";
 import Pagination from "@material-ui/lab/Pagination";
 import useAxios from "axios-hooks";
@@ -35,6 +36,7 @@ const BookList = () => {
 
   return (
     <div>
+      <Helmet title="Book List" />
       <Grid className={classes.root} container>
         {data.rows.map((data) => (
           <Grid item key={data.name}>

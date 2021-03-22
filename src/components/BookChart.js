@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { makeStyles, Typography } from "@material-ui/core";
 import {
   LineChart,
@@ -63,6 +64,7 @@ const BookChart = () => {
 
   return (
     <>
+      <Helmet title="Book Chart" />
       <Typography className={classes.pagination} variant="h2">
         {`${moment()
           .subtract(page - 1, "years")
