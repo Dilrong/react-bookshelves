@@ -46,6 +46,7 @@ const BookChart = () => {
   };
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(
         `https://gsx2json.dilrong.com/api?id=11rI8SWRtC7Tcevlazc7_dVP4dC2n0GyY7BW7_1NHSiE&columns=false&sheet=${page}`
