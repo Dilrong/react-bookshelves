@@ -9,7 +9,8 @@ import {
   Tooltip,
 } from "@material-ui/core";
 import BubbleChartIcon from "@material-ui/icons/BubbleChart";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import { SelectedListModeValue } from "../../context";
 
 export const useStyles = makeStyles((theme) =>
   createStyles({
@@ -27,6 +28,7 @@ export const useStyles = makeStyles((theme) =>
 
 const Header = () => {
   const classes = useStyles();
+  const { selectedListMode, setSectedListMode } = SelectedListModeValue();
 
   return (
     <div className={classes.root}>
@@ -35,11 +37,29 @@ const Header = () => {
           <Typography variant="h6" className={classes.title}>
             Dilrong's Book
           </Typography>
-          <Tooltip title="Chart">
-            <IconButton color="inherit">
-              <BubbleChartIcon />
-            </IconButton>
-          </Tooltip>
+          {selectedListMode ? (
+            <Tooltip title="Chart">
+              <IconButton
+                color="inherit"
+                onClick={() => {
+                  setSectedListMode(false);
+                }}
+              >
+                <BubbleChartIcon />
+              </IconButton>
+            </Tooltip>
+          ) : (
+            <Tooltip title="CardView">
+              <IconButton
+                color="inherit"
+                onClick={() => {
+                  setSectedListMode(true);
+                }}
+              >
+                <DashboardIcon />
+              </IconButton>
+            </Tooltip>
+          )}
         </Toolbar>
       </AppBar>
     </div>

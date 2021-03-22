@@ -31,7 +31,6 @@ const IndividualBook = ({ book }) => {
         />
         <CardContent>
           <Typography variant="h5">{book.name}</Typography>
-          <Rating name="read-only" value={book.grade} readOnly />
           <Typography variant="body2" component="p">
             {book.author} 지음
           </Typography>
@@ -39,6 +38,7 @@ const IndividualBook = ({ book }) => {
             {book.time}
           </Typography>
         </CardContent>
+        <Rating name="read-only" value={book.grade} readOnly />
       </CardActionArea>
     </Card>
   );

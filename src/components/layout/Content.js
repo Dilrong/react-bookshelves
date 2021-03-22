@@ -1,14 +1,18 @@
 import React from "react";
 import Header from "./Header";
 import BookList from "../BookList";
+import BookChart from "../BookChart";
+import { SelectedListModeValue } from "../../context";
 
-const App = () => {
+const Content = () => {
+  const { selectedListMode } = SelectedListModeValue();
+
   return (
     <>
       <Header />
-      <BookList />
+      {selectedListMode ? <BookList /> : <BookChart />}
     </>
   );
 };
 
-export default App;
+export default Content;
