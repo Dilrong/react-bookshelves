@@ -30,7 +30,7 @@ const IndividualBook = ({ book }) => {
           title={book.name}
         />
         <CardContent>
-          <Typography variant="h5">{book.name}</Typography>
+          <Typography variant="h6">{book.name}</Typography>
           <Typography variant="body2" component="p">
             {book.author} 지음
           </Typography>
