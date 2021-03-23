@@ -12,6 +12,7 @@ import {
 const useStyles = makeStyles({
   root: {
     maxWidth: 250,
+    minWidth: 250,
     margin: "1rem",
   },
 });

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { makeStyles, Typography } from "@material-ui/core";
+import { makeStyles, Typography, Container } from "@material-ui/core";
 import {
   LineChart,
   Line,
@@ -23,6 +23,11 @@ const useStyles = makeStyles({
     display: "flex",
     flexGrow: 1,
     marginTop: "1rem",
+    justifyContent: "center",
+    justifyItems: "center",
+    ["@media (max-width:768px)"]: {
+      flexDirection: "column",
+    },
   },
   pagination: {
     display: "flex",
@@ -64,7 +69,7 @@ const BookChart = () => {
   if (error) return <Progress />;
 
   return (
-    <>
+    <Container>
       <Helmet title="Book Chart" />
       <Typography className={classes.pagination} variant="h2">
         {`${moment()
@@ -131,7 +136,7 @@ const BookChart = () => {
         page={page}
         onChange={handleChange}
       />
-    </>
+    </Container>
   );
 };
 

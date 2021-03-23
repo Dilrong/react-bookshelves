@@ -9,6 +9,8 @@ import Progress from "./Progress";
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
+    justifyContent: "center",
+    justifyItems: "center",
   },
   pagination: {
     display: "flex",
